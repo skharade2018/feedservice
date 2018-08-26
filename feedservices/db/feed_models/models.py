@@ -24,6 +24,7 @@ class Question(models.Model):
     string = models.CharField(max_length=1024)
     username = models.CharField(max_length=124)
     answers = models.ManyToManyField(Answer, related_name='answers_for_question')
+
     views = models.IntegerField(null=True)
     created_on = models.DateTimeField(default=datetime.now())
 
@@ -32,9 +33,11 @@ class Upvote(models.Model):
     username = models.CharField(max_length=128)
     answer = models.ForeignKey(Answer)
     created_on = models.DateTimeField(default=datetime.now())
+    is_active = models.BooleanField(default=True)
 
 
 class Downvote(models.Model):
     username = models.CharField(max_length=128)
     answer = models.ForeignKey(Answer)
     created_on = models.DateTimeField(default=datetime.now())
+    is_active = models.BooleanField(default=True)
